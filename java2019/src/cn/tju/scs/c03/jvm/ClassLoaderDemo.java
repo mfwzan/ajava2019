@@ -17,8 +17,8 @@ public class ClassLoaderDemo {
 		System.out.println(System.getProperty("java.ext.dirs"));
 		
 		ClassLoader extensionClassloader = ClassLoader.getSystemClassLoader().getParent();
-//		System.out.println("Parent of extension classloader:" + extensionClassloader.getParent());
-		System.out.println("extension classloader can use these jars:");
+		System.out.println("Parent of extension classloader:" + extensionClassloader.getParent());
+		System.out.println("Extension classloader can use these jars:");
 		URL[] extURLs =  ((URLClassLoader)ClassLoader.getSystemClassLoader().getParent()).getURLs();
 		
 		for (int i = 0; i < extURLs.length; i++) {
