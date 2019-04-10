@@ -4,7 +4,7 @@ class Bank{
 	
 	private int money = 500;	
 	//取钱的方法，返回取钱的数目
-	public synchronized int  getMoney(int number){
+	public  int  getMoney(int number){
 		if (number < 0) {
 			return -1;
 		}else if (money < 0) {
