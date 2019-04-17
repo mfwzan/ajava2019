@@ -1,50 +1,62 @@
 package cn.tju.scs.c04.synchronization;
 
+
 class Singleton{
-	private static Singleton singleton = null;
-	private Singleton(){
-		System.out.println("单例模式");
-		
-	}
+	private static Singleton instance = null;
+	private Singleton(){}
+	
 	
 	public static Singleton getInstance(){
-//		if (singleton == null) {
-//			synchronized (Singleton.class) {
-//				if (singleton==null){
-//					singleton = new Singleton();
-//				}
-//			}
-//			
+
+//		if (instance == null) {
+//			if (instance == null){
+//				instance = new Singleton();
+//				}			
 //		}
-		if (singleton == null) {
+		
+		if (instance == null) {
 			synchronized(Singleton.class){
-				if (singleton == null){
-					singleton = new Singleton();
+				if (instance == null){
+					instance = new Singleton();
 				}
 			}
 		}
 		
 		
-		return singleton;
+		return instance;
 	}
 }
 
 class SThread implements Runnable{
 	@Override
 	public void run() {
-		Singleton.getInstance();
+		System.out.println(Thread.currentThread().getName() + Singleton.getInstance());
 	}
 }
 
 public class SingletonDemo {
 
+	//多线程下
 	public static void main(String[] args) {
 		SThread st = new SThread();
-		Thread t1 = new Thread(st);
-		t1.start();
-		Thread t2 = new Thread(st);
-		t2.start();
+
+		for (int i = 0; i < 20; i++) {
+			Thread t = new Thread(st);
+			t.start();
+		}
 
 	}
+	
+	//单线程下
+//	public static void main(String[] args) {
+//		Singleton s1 = Singleton.getInstance();
+//		System.out.println(s1);
+//		Singleton s2 = Singleton.getInstance();
+//		System.out.println(s2);
+//		Singleton s3 = Singleton.getInstance();
+//		System.out.println(s3);
+//		Singleton s4 = Singleton.getInstance();
+//		System.out.println(s4);
+//	}
 
 }

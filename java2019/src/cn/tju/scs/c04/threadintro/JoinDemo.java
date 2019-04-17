@@ -8,12 +8,9 @@ public class JoinDemo {
 		try {
 			t1.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		t2.start();
-		
-
 	}
 
 }
@@ -25,7 +22,7 @@ class JoinThread extends Thread{
 	
 	@Override
 	public void run() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			System.out.println(this.getName() + " - " + i);
 		}
 	}

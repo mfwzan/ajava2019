@@ -1,6 +1,7 @@
 package cn.tju.scs.c04.thread;
 
 public class ProducerConsumer {
+	//主程序操作
 	public static void main(String[] args) {
 		SyncStack ss = new SyncStack();
 		ProducerNew pn = new ProducerNew(ss);
@@ -14,6 +15,7 @@ public class ProducerConsumer {
 
 }
 
+//生产和消费的对象
 class Mantou{
 	int id;
 	public Mantou(int id) {
@@ -24,10 +26,13 @@ class Mantou{
 	}
 }
 
+
+//生产消费的容器
 class SyncStack{
 	int index = 0;
 	Mantou[] arrMT = new Mantou[6];
 	
+	//增加（生产）
 	public synchronized void push(Mantou mt)  {
 		while (index == arrMT.length) {
 			try {
@@ -42,6 +47,7 @@ class SyncStack{
 		index++;
 	}
 	
+	//弹出（消费）
 	public synchronized Mantou pop() throws InterruptedException {
 		while (index == 0) {
 			this.wait();
@@ -52,6 +58,7 @@ class SyncStack{
 	}
 }
 
+//生产者
 class ProducerNew implements Runnable{
 	SyncStack ss = null;
 	public ProducerNew(SyncStack ss) {
@@ -74,6 +81,8 @@ class ProducerNew implements Runnable{
 	}
 }
 
+
+//消费者
 class ConsumerNew implements Runnable{
 	SyncStack ss = null;
 	public ConsumerNew(SyncStack ss) {

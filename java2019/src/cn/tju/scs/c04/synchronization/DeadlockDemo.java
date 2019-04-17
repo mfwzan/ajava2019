@@ -11,7 +11,7 @@ class DlExample{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+			System.out.println("方法一在等第二个锁...");
 			synchronized (obj2) {
 				System.out.println("method1");
 			}
@@ -25,7 +25,7 @@ class DlExample{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+			System.out.println("方法二在等第一个锁...");
 			synchronized (obj1) {
 				System.out.println("method2");
 			}

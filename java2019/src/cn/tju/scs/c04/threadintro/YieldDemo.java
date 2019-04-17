@@ -6,9 +6,7 @@ public class YieldDemo {
 		YieldThread t2 = new YieldThread("小东");
 		t1.start();
 		t2.start();	
-
 	}
-
 }
 
 class YieldThread extends Thread{
@@ -19,13 +17,11 @@ class YieldThread extends Thread{
 	
 	@Override
 	public void run() {
-		for (int i = 0; i < 100; i++) {
-			
+		for (int i = 0; i < 100; i++) {			
 			System.out.println(s + "-" + i);
 			if (i % 10 == 0) {
 				Thread.yield();
-			}
-			
+			}			
 		}
 	}
 }

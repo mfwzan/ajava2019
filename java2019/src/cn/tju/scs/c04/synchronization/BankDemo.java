@@ -4,7 +4,7 @@ class Bank{
 	
 	private int money = 500;	
 	//取钱的方法，返回取钱的数目
-	public  int  getMoney(int number){
+	public synchronized int  getMoney(int number){
 		if (number < 0) {
 			return -1;
 		}else if (money < 0) {
@@ -17,9 +17,13 @@ class Bank{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			money -=number;
-			System.out.println( Thread.currentThread().getName() + "取完钱的余额：" + money);
-			return number;
+			
+				money -=number;
+				System.out.println( Thread.currentThread().getName() + "取完钱的余额：" + money);
+				return number;
+			
+			
+			
 		}		
 	}
 }
@@ -42,6 +46,7 @@ public class BankDemo {
 		BankThread bt1 = new BankThread(bank);
 		bt1.setName("微信");
 		bt1.start();
+		
 		BankThread bt2 = new BankThread(bank);
 		bt2.setName("支付宝");
 		bt2.start();
